@@ -1,0 +1,21 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "name": "sand-dune-latte",
+      "prompt": "Use case: product-mockup. Asset type: square coffee-shop website menu preview, illustrative serving suggestion only, not documentary product or ingredient photography. Style: premium editorial still-life photography, realistic material textures. Scene: seamless deep espresso-brown studio backdrop and dark brown matte tabletop. Composition: one centered drink shown completely, three-quarter view at table height, generous breathing room, square image. Lighting: warm copper side light, soft shadow, restrained elegant mood, ivory highlights. No people, no logos, no text, no watermark, no branding. Subject: Sand Dune Latte, warm creamy latte in a low rounded ivory ceramic cup with handle, on matching ivory saucer. Subtle simple latte-art swirl and delicate steam."
+    },
+    {
+      "name": "adeni-chai",
+      "prompt": "Use case: product-mockup. Asset type: square coffee-shop website menu preview, illustrative serving suggestion only, not documentary product or ingredient photography. Style: premium editorial still-life photography, realistic material textures. Scene: seamless deep espresso-brown studio backdrop and dark brown matte tabletop. Composition: one centered drink shown completely, three-quarter view at table height, generous breathing room, square image. Lighting: warm copper side light, soft shadow, restrained elegant mood, ivory highlights. No people, no logos, no text, no watermark, no branding. Subject: Adeni Chai, warm amber milky tea in a small elegant ivory ceramic cup with handle, on matching ivory saucer. Smooth rich tan tea surface, subtle delicate steam, no latte foam."
+    },
+    {
+      "name": "palm-date-matcha",
+      "prompt": "Use case: product-mockup. Asset type: square coffee-shop website menu preview, illustrative serving suggestion only, not documentary product or ingredient photography. Style: premium editorial still-life photography, realistic material textures. Scene: seamless deep espresso-brown studio backdrop and dark brown matte tabletop. Composition: one centered drink shown completely, three-quarter view at table height, generous breathing room, square image. Lighting: warm copper side light, soft shadow, restrained elegant mood, ivory highlights. No people, no logos, no text, no watermark, no branding. Subject: Palm Date Matcha, one tall clear glass of iced drink with distinct deep green matcha and soft ivory milk layers, visible clean ice, gentle condensation on glass. Simple sculptural glass, no straw or garnish."
+    },
+    {
+      "name": "biscoff-coffee",
+      "prompt": "Use case: product-mockup. Asset type: square coffee-shop website menu preview, illustrative serving suggestion only, not documentary product or ingredient photography. Style: premium editorial still-life photography, realistic material textures. Scene: seamless deep espresso-brown studio backdrop and dark brown matte tabletop. Composition: one centered drink shown completely, three-quarter view at table height, generous breathing room, square image. Lighting: warm copper side light, soft shadow, restrained elegant mood, ivory highlights. No people, no logos, no text, no watermark, no branding. Subject: Biscoff Coffee, one clear short glass of creamy caramel-brown coffee with soft ivory cream top, beside a single unbranded golden rectangular biscuit on the table. Restrained realistic serving, no packaging."
+    }
+  ]
+}

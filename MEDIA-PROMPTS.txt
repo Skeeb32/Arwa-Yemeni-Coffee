@@ -1,0 +1,18 @@
+Use case: photorealistic-natural
+Asset type: website hero photograph for Arwa Yemeni Coffee Chicago
+Primary request: cinematic photorealistic wide still life of a copper coffee pot and two small ivory ceramic cups on warm stone.
+Scene/backdrop: dark espresso brown studio backdrop, not a shop interior.
+Composition/framing: 16:9 landscape, requested 2048x1152 resolution or larger; entire subject grouped on right half with dark negative space across left half for website headline overlay.
+Lighting/mood: dramatic warm side light, subtle steam, refined tactile photographic grain, inviting and calm.
+Materials/textures: burnished copper, ivory ceramic, warm natural stone.
+Constraints: no text, no logos, no watermark, no people; no invented actual shop interior. Photograph, not illustration.
+
+---
+
+Use case: ads-marketing
+Asset type: landscape social sharing card for Arwa Yemeni Coffee Chicago
+Primary request: refined luxury editorial card with warm ivory typography on espresso brown and a copper coffee still life on the right.
+Composition/framing: landscape 1.91:1, requested 2400x1256 resolution; left side contains clearly legible elegant editorial serif typography, generous margins; copper coffee pot and small ivory cups on warm stone on right with dramatic warm side light and subtle steam.
+Text (verbatim): "ARWA" and below it "YEMENI COFFEE · CHICAGO".
+Style/medium: sophisticated typographic editorial design with photorealistic still life, restrained copper and warm ivory palette.
+Constraints: render exact text only, no additional words, no watermark, no people, no shop interior.
