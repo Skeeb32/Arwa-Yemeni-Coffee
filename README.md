@@ -40,6 +40,8 @@ A one-page brand experience with an intentionally small stack: **HTML, CSS, vani
 
 Four drink previews share the site’s espresso, parchment, and copper palette. Hover or keyboard-focus a drink on desktop to reveal its image; tap its name on mobile to expand the preview. The original hero artwork stays intact.
 
+**Feeling undecided?** Try **Pick my next cup** in the menu: a short shuffle reveals a featured drink, never repeating the previous pick. Add your discovery to the bag or shuffle again. Keyboard navigation, reduced-motion preferences, and the site’s pause-motion control are supported. Picking a drink never adds it to the bag automatically.
+
 ![Menu preview showing Palm Date Matcha beside the four drink selections](docs/images/menu.webp)
 
 The artwork is **illustrative serving imagery**, not verified photography of the shop’s actual drinks. The menu labels, contact details, hours, and quoted review excerpts have separate factual provenance in [SOURCES.md](SOURCES.md).

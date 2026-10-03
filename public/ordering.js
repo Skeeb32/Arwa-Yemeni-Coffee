@@ -13,6 +13,32 @@ $('#delivery-fields').hidden=mode!=='delivery';$('.pickup-location').hidden=mode
 const ready=catalog.orderingEnabled&&count&&priced&&(mode==='pickup'||(delivery!==null&&validZip&&['name','address','city'].every(k=>$('#delivery-'+k).value.trim().length>=2)&&/^[A-Za-z]{2}$/.test($('#delivery-state').value.trim())));$('#checkout-button').disabled=!ready;$('#checkout-button').textContent=catalog.orderingEnabled?'Continue to Stripe':'Checkout unavailable';$('#ordering-note').hidden=catalog.orderingEnabled;
 }
 function add(id){if(!catalog?.items.some(i=>i.id===id))return;if((cart[id]||0)>=20){toast('Maximum 20 of each drink per order.');return}cart[id]=(cart[id]||0)+1;saveDraft();render();toast(`${catalog.items.find(i=>i.id===id).name} added to your bag`)}
+let lastCupId=null;
+async function pickCup(){
+  const button=$('#pick-cup'), panel=$('#cup-result');
+  if(!catalog?.items.length||button.disabled)return;
+  button.disabled=true;
+  panel.hidden=true;
+  $('.cup-picker').classList.add('is-shuffling');
+  button.textContent='Finding your cup…';
+  $('#cup-announcement').textContent='';
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('motion-paused');
+  if(!still)await new Promise(resolve=>setTimeout(resolve,650));
+  const choices=catalog.items.filter(item=>item.id!==lastCupId);
+  const item=(choices.length?choices:catalog.items)[Math.floor(Math.random()*(choices.length||catalog.items.length))];
+  lastCupId=item.id;
+  $('#cup-image').src=item.image;
+  $('#cup-image').alt=`Illustrative serving suggestion for ${item.name}`;
+  $('#cup-name').textContent=item.name;
+  $('#cup-add').dataset.add=item.id;
+  $('#cup-add').setAttribute('aria-label',`Add ${item.name} to bag`);
+  panel.hidden=false;
+  $('.cup-picker').classList.remove('is-shuffling');
+  button.textContent='Pick another cup';
+  button.disabled=false;
+  $('#cup-announcement').textContent=`Your surprise pick: ${item.name}. Add it to your bag or pick another cup.`;
+}
+$('#pick-cup').addEventListener('click',pickCup);
 function showPreview(id,toggle=false){const item=catalog?.items.find(i=>i.id===id);if(!item)return;const mobile=matchMedia('(max-width:900px)').matches;if(mobile){const panel=$('#preview-'+id),open=toggle?!panel.hidden:true;document.querySelectorAll('.mobile-product').forEach(p=>p.hidden=true);document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-expanded','false'));panel.hidden=!open;$(`[data-preview="${id}"]`).setAttribute('aria-expanded',String(open));}else{previewId=id;$('#menu-preview-image').src=item.image;$('#menu-preview-image').alt=`Illustrative serving suggestion for ${item.name}`;$('#menu-preview-name').textContent=item.name;$('.menu-image-overlay').classList.add('active')}}
 function clearPreview(){previewId=null;$('.menu-image-overlay').classList.remove('active')}
 function steps(){return mode==='delivery'?['Order received','Making your order','Ready for delivery','On the way','Arrived']:['Order received','Making your order','Ready for pickup','Picked up']}
@@ -27,6 +53,6 @@ document.querySelectorAll('.menu-item').forEach(row=>{row.addEventListener('poin
 $('#enable-notifications').onclick=async()=>{if(!('Notification'in window)){toast('Browser notifications are not supported here. Updates remain visible on this page.');return}const result=await Notification.requestPermission();$('#enable-notifications').textContent=result==='granted'?'Notifications enabled':'Notifications not enabled';toast(result==='granted'?'Notifications enabled while this page is open.':'Updates will still appear on this page.')};
 $('.motion-toggle').onclick=()=>{const paused=document.documentElement.classList.toggle('motion-paused');$('.motion-toggle').setAttribute('aria-pressed',String(paused));$('.motion-toggle').textContent=paused?'Resume motion':'Pause motion'};
 trackerDialog.addEventListener('close',()=>{clearInterval(pollTimer);pollTimer=null});trackerDialog.addEventListener('toggle',()=>{if(trackerDialog.open&&!isDemo&&!pollTimer)pollTimer=setInterval(()=>{if(!document.hidden)refreshOrder()},15000)});
-async function init(){try{const r=await fetch('/api/catalog');if(!r.ok)throw Error();catalog=await r.json()}catch{catalog=await fetch('catalog.json').then(r=>r.json())}try{const saved=JSON.parse(localStorage.getItem('arwa-bag')||'{}');for(const i of catalog.items)if(Number.isInteger(saved[i.id])&&saved[i.id]>0&&saved[i.id]<=20)cart[i.id]=saved[i.id]}catch{}render();if(catalog.orderingEnabled){$('.menu-note').textContent='Hover or tap to preview. Images are illustrative serving suggestions.';$('.order-invitation small').textContent='Secure checkout with Stripe.';}const q=new URLSearchParams(location.search);if(q.get('checkout')==='cancelled'){toast('Checkout was cancelled. Your bag is still here.');history.replaceState(null,'',location.pathname+'#menu')}if(q.has('session_id')){const token=new URLSearchParams(location.hash.slice(1)).get('order_token');if(token){order={session:q.get('session_id'),token,paid:false,reference:'',fulfillment:'pickup',status:'Order received'};openTracker(false);await refreshOrder();}}}
+async function init(){try{const r=await fetch('/api/catalog');if(!r.ok)throw Error();catalog=await r.json()}catch{catalog=await fetch('catalog.json').then(r=>r.json())}try{const saved=JSON.parse(localStorage.getItem('arwa-bag')||'{}');for(const i of catalog.items)if(Number.isInteger(saved[i.id])&&saved[i.id]>0&&saved[i.id]<=20)cart[i.id]=saved[i.id]}catch{}render();$('#pick-cup').disabled=!catalog.items.length;if(catalog.orderingEnabled){$('.menu-note').textContent='Hover or tap to preview. Images are illustrative serving suggestions.';$('.order-invitation small').textContent='Secure checkout with Stripe.';}const q=new URLSearchParams(location.search);if(q.get('checkout')==='cancelled'){toast('Checkout was cancelled. Your bag is still here.');history.replaceState(null,'',location.pathname+'#menu')}if(q.has('session_id')){const token=new URLSearchParams(location.hash.slice(1)).get('order_token');if(token){order={session:q.get('session_id'),token,paid:false,reference:'',fulfillment:'pickup',status:'Order received'};openTracker(false);await refreshOrder();}}}
 init().catch(()=>{$('#ordering-note').textContent='The menu could not load. Please refresh or call the shop.'});
 })();

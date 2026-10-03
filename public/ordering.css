@@ -2,3 +2,26 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
 
 .motion-paused .hero-art,.motion-paused .hero-content,.motion-paused .hero-orbit{transform:none!important}
 [hidden]{display:none!important}.tracker-art svg{left:0}.cart-dialog[open]{animation-duration:.25s}
+
+/* A small moment of chance, using the existing featured menu. */
+.cup-picker{margin:0 0 48px;padding:28px 32px;border:1px solid #80513755;background:#e8dac355;border-radius:4px}
+.cup-picker-intro{display:flex;align-items:center;gap:24px}
+.cup-spark{font-size:48px;color:#805137;line-height:1;display:inline-block}
+.cup-picker h3{font:normal clamp(24px,3vw,36px)/1.15 Georgia,serif;margin:4px 0 8px}
+.cup-picker p{margin:0;color:#645548}.cup-picker .eyebrow{font-size:10px;letter-spacing:.14em;margin-bottom:8px;color:#805137}
+.cup-picker button{border:1px solid #805137;background:#30231b;color:#f4ecdf;padding:14px 20px;font:inherit;font-size:14px;cursor:pointer;min-height:48px;border-radius:2px;white-space:nowrap;transition:background .2s,transform .2s}
+.cup-picker button:hover{background:#805137;transform:translateY(-2px)}
+.cup-picker button:focus-visible{outline:3px solid #805137;outline-offset:5px}
+.cup-picker button:disabled{cursor:wait;opacity:.7;transform:none}
+#pick-cup{margin-left:auto}
+.cup-result:not([hidden]){display:flex;align-items:center;gap:24px;margin-top:24px;padding-top:24px;border-top:1px solid #80513740;animation:cup-reveal .4s ease-out}
+.cup-result img{width:104px;height:104px;object-fit:cover;border-radius:50%}
+.cup-result h4{font:normal clamp(24px,3vw,32px)/1.2 Georgia,serif;margin:0 0 8px}.cup-result small{font-size:11px;color:#645548}
+#cup-add{margin-left:auto;background:transparent;color:#30231b}#cup-add:hover{background:#dfc8ab}
+.is-shuffling .cup-spark{animation:cup-shuffle .65s ease-in-out}
+.cup-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@keyframes cup-shuffle{to{transform:rotate(360deg)}}
+@keyframes cup-reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.cup-picker{padding:24px 20px}.cup-picker-intro{flex-wrap:wrap;gap:16px}.cup-spark{font-size:34px}.cup-picker-intro>div{flex:1;min-width:170px}.cup-picker-intro>button{width:100%}.cup-result:not([hidden]){flex-wrap:wrap;gap:16px}.cup-result img{width:72px;height:72px}.cup-result>div{flex:1;min-width:140px}#cup-add{width:100%}.cup-picker-intro p:not(.eyebrow){font-size:14px}}
+@media(prefers-reduced-motion:reduce){.cup-picker *{animation:none!important;transition:none!important}.cup-picker button:hover{transform:none}}
+.motion-paused .cup-picker *{animation:none!important;transition:none!important}.motion-paused .cup-picker button:hover{transform:none}
